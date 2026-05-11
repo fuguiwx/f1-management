@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import User from '../views/User.vue'
 import Discuss from '../views/Discuss.vue'
 import Driver from '../views/Driver.vue'
@@ -15,6 +15,6 @@ const routes = [
 ]
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 })
