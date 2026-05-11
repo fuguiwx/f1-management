@@ -1,0 +1,89 @@
+/* 全局公共样式 - 统一所有页面 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 页面整体背景（你指定的渐变） */
+body {
+  background: radial-gradient(at 0% 0%, #c084fc 0, transparent 50%),
+              radial-gradient(at 100% 100%, #818cf8 0, transparent 50%),
+              #f3e8ff;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: "Microsoft YaHei", sans-serif;
+}
+
+/* 页面容器 - 统一卡片效果 */
+.page-wrapper {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(192, 132, 252, 0.2);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 页面标题统一 */
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #6b21a8;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 按钮统一美化 */
+.btn-add {
+  background: #9333ea !important;
+  border-color: #9333ea !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin-bottom: 20px !important;
+}
+
+.btn-edit {
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+
+.btn-delete {
+  background: #ef4444 !important;
+  border-color: #ef4444 !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+
+/* 表格统一美化 */
+.el-table {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.el-table th {
+  background: #f3e8ff !important;
+  color: #6b21a8 !important;
+  font-weight: bold !important;
+}
+
+/* 弹窗统一美化 */
+.el-dialog {
+  border-radius: 16px !important;
+}
+
+.el-dialog__title {
+  color: #6b21a8 !important;
+  font-weight: bold !important;
+}
+
+.el-form-item__label {
+  color: #4a044e !important;
+  font-weight: 500 !important;
+}
