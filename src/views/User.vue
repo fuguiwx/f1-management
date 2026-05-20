@@ -25,23 +25,23 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { userApi } from '../api'
 const list = ref([])
 const form = ref({})
 const visible = ref(false)
 
 onMounted(() => getList())
-const getList = async () => {
-  const res = await userApi.list()
-  list.value = res.data.data
+const getList = () => {
+  list.value = [
+    { id: 1, nickname: '老大' },
+    { id: 2, nickname: '老小' }
+  ]
 }
 const openAdd = () => { form.value = {}; visible.value = true }
 const openEdit = (row) => { form.value = { ...row }; visible.value = true }
-const save = async () => {
-  form.value.id ? await userApi.update(form.value) : await userApi.add(form.value)
+const save = () => {
   visible.value = false; getList()
 }
-const del = async (id) => { await userApi.delete(id); getList() }
+const del = () => { getList() }
 </script>
 
 <style scoped>
