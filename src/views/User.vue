@@ -6,7 +6,6 @@
     <el-table :data="list" border width="100%">
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="nickname" label="昵称" />
-      <el-table-column prop="openid" label="微信标识" />
       <el-table-column label="操作" width="180">
         <template #default="scope">
           <el-button class="btn-edit" @click="openEdit(scope.row)" size="small">编辑</el-button>
@@ -19,9 +18,6 @@
       <el-form v-model="form" label-width="80px">
         <el-form-item label="昵称">
           <el-input v-model="form.nickname" />
-        </el-form-item>
-        <el-form-item label="头像">
-          <el-input v-model="form.avatar" />
         </el-form-item>
       </el-form>
       <el-button class="btn-add" @click="save">保存</el-button>
@@ -41,7 +37,7 @@ onMounted(() => getList())
 
 const getList = async () => {
   const res = await userApi.list()
-  list.value = res.data
+  list.value = res.data.data || []
 }
 
 const openAdd = () => {
@@ -49,22 +45,18 @@ const openAdd = () => {
   visible.value = true
 }
 
-const openEdit = (row) => {
+const openEdit = row => {
   form.value = { ...row }
   visible.value = true
 }
 
 const save = async () => {
-  if (form.value.id) {
-    await userApi.update(form.value)
-  } else {
-    await userApi.add(form.value)
-  }
+  form.value.id ? await userApi.update(form.value) : await userApi.add(form.value)
   visible.value = false
   getList()
 }
 
-const del = async (id) => {
+const del = async id => {
   await userApi.delete(id)
   getList()
 }
