@@ -27,6 +27,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { ElMessage } from 'element-plus'
 import { userApi } from '../api'
 
 const list = ref([])
@@ -36,8 +37,12 @@ const visible = ref(false)
 onMounted(() => getList())
 
 const getList = async () => {
-  const res = await userApi.list()
-  list.value = res.data.data || []
+  try {
+    const res = await userApi.list()
+    list.value = res.data || []
+  } catch (e) {
+    list.value = []
+  }
 }
 
 const openAdd = () => {
@@ -51,14 +56,28 @@ const openEdit = row => {
 }
 
 const save = async () => {
-  form.value.id ? await userApi.update(form.value) : await userApi.add(form.value)
-  visible.value = false
-  getList()
+  try {
+    if (form.value.id) {
+      await userApi.update(form.value)
+    } else {
+      await userApi.add(form.value)
+    }
+    visible.value = false
+    ElMessage.success('操作成功')
+    getList()
+  } catch (e) {
+    ElMessage.error('操作失败')
+  }
 }
 
 const del = async id => {
-  await userApi.delete(id)
-  getList()
+  try {
+    await userApi.delete(id)
+    ElMessage.success('删除成功')
+    getList()
+  } catch (e) {
+    ElMessage.error('删除失败')
+  }
 }
 </script>
 
